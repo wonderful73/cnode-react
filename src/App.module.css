@@ -1,7 +1,11 @@
-
+html{
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+}
 .red{
   color: red;
 }
 .big{
-  font-size: 30px;
+  font-size: 1rem;
 }
