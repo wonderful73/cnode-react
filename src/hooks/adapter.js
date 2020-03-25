@@ -6,6 +6,7 @@ function useAdaper(uiWidth) {
     const docEl = document.documentElement;
     const fixedWidth = uiWidth / 2;
     let screenWidth = docEl.clientWidth ? docEl.clientWidth : window.screen.width;
+    screenWidth = screenWidth > uiWidth ? uiWidth : screenWidth;
     const fontSize = (screenWidth / fixedWidth) * 20;
     return fontSize;
   }

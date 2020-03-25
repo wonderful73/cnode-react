@@ -14,6 +14,8 @@ import { AppFrame } from './layout';
 
 import { Provider, useSelector } from 'react-redux';
 import Home from './views/Home';
+import Topic from './views/Topic';
+import NotFound from './views/NotFound';
 
 const App = () => {
   useAdaper(750);
@@ -24,6 +26,8 @@ const App = () => {
         <React.Suspense>
           <Switch>
             <Route exact path="/" component={Home}></Route>
+            <Route exact path="/topic/:id" component={Topic}></Route>
+            <Route path="*" component={NotFound} />
           </Switch>
         </React.Suspense>
         </AppFrame>
