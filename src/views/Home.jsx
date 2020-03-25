@@ -1,8 +1,11 @@
 import React from 'react';
+import AppWrapper from '../layout/AppWrapper'
 
 const Home = () => {
   return (
-    <div>首页</div>
+    <AppWrapper title="cnode react">
+      <div>首页</div>
+    </AppWrapper>
   )
 }
 
