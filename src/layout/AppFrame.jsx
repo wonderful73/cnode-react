@@ -44,24 +44,24 @@ const AppFrame = (props) => {
 
   return (
     <AppFrameContext.Provider value={dispatch}>
-    {withHeader && (
-      <React.Fragment>
-        <NavBar
-          mode="light"
-          onLeftClick={handleLeftClick}
-          leftContent={
-            <span>Tabs</span>
-          }
-          rightContent={
-            <Icon key="1" type="ellipsis" />
-          }
-        >
-          cnode
-        </NavBar>
-      </React.Fragment>
-    )}
+      {withHeader && (
+        <React.Fragment>
+          <NavBar
+            mode="light"
+            onLeftClick={handleLeftClick}
+            leftContent={
+              <span>Tabs</span>
+            }
+            rightContent={
+              <Icon key="1" type="ellipsis" />
+            }
+          >
+            cnode
+          </NavBar>
+        </React.Fragment>
+      )}
 
-    {props.children}
+      {props.children}
     </AppFrameContext.Provider>
   )
 }
@@ -75,8 +75,8 @@ export default AppFrame;
 export const useChangeApp = () => {
   const dispatch = React.useContext(AppFrameContext);
 
-  return React.useCallback((options => {
+  return React.useCallback(options => {
     const type = options.reset ? 'RESET' : 'CHANGE';
     dispatch({ type, payload: options });
-  }), [dispatch]);
-}
+  }, [dispatch]);
+};

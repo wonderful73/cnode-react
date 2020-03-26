@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useChangeApp } from './AppFrame';
 
@@ -10,11 +11,13 @@ const AppWrapper = (props) => {
     reset = false 
   } = props;
 
-  changeApp({
-    title,
-    withHeader,
-    reset
-  });
+  React.useEffect(() => {
+    changeApp({
+      title,
+      withHeader,
+      reset
+    });
+  }, [title, withHeader, reset]);
 
   return props.children;
 }

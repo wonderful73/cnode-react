@@ -23,13 +23,13 @@ const App = () => {
     <Provider store={store}>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <AppFrame>
-        <React.Suspense>
-          <Switch>
-            <Route exact path="/" component={Home}></Route>
-            <Route exact path="/topic/:id" component={Topic}></Route>
-            <Route path="*" component={NotFound} />
-          </Switch>
-        </React.Suspense>
+          <React.Suspense>
+            <Switch>
+              <Route exact path="/" component={Home}></Route>
+              <Route exact path="/topic/:id" component={Topic}></Route>
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </React.Suspense>
         </AppFrame>
       </BrowserRouter>
     </Provider>
