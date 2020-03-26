@@ -3,7 +3,7 @@ import AppWrapper from '../layout/AppWrapper'
 
 const Home = () => {
   return (
-    <AppWrapper title="cnode react">
+    <AppWrapper title="cnode">
       <div>首页</div>
     </AppWrapper>
   )
