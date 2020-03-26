@@ -1,7 +1,7 @@
 
-基于[Fansaly/RCNode(https://github.com/fansaly/RCNode)]修改的react版cnode，感谢原作者。
+基于[Fansaly/RCNode](https://github.com/fansaly/RCNode)修改的react版cnode，感谢原作者。
 
-使用 [ant-design-mobile(https://github.com/ant-design/ant-design-mobile)].
+使用 [ant-design-mobile](https://github.com/ant-design/ant-design-mobile).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
