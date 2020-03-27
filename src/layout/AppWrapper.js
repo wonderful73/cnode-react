@@ -17,7 +17,7 @@ const AppWrapper = (props) => {
       withHeader,
       reset
     });
-  }, [title, withHeader, reset]);
+  }, [title, withHeader, reset, changeApp]);
 
   return props.children;
 }
