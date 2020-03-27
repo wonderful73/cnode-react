@@ -1,0 +1,40 @@
+.topicsList{
+  padding: .5rem;
+}
+.topic{
+  display: flex;
+  align-items: center;
+  margin-bottom: .75rem;
+  padding: .5rem;
+  background: #fff;
+  border-radius: .2rem;
+  box-shadow: 0 0 .25rem .05rem rgba(0, 0, 0, 0.1);
+}
+.avatar{
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: .5rem;
+  overflow: hidden;
+  border-radius: 2.5rem;
+  border: 2px solid #999;
+  flex-shrink: 0;
+}
+.avatar > img {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+.title{
+  margin-bottom: .25rem;
+  color: #333;
+}
+.count{
+  font-size: .6rem;
+  color: #999;
+}
+.count > span{
+  margin-right: .25rem;
+}
+.loginname{
+  color: #333;
+}

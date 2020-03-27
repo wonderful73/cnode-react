@@ -1,6 +1,7 @@
 import React from 'react';
-import AppWrapper from '../layout/AppWrapper'
-import { get } from '../fetch';
+import AppWrapper from '../../layout/AppWrapper'
+import { get } from '../../fetch';
+import styles from './index.module.css';
 
 const Home = () => {
   const isFetching = React.useRef(false);
@@ -30,7 +31,6 @@ const Home = () => {
         setTopics(prevState => (isFetched.current ? [...prevState, data] : data));
         page.current += 1;
         isFetched.current = true;
-        console.log(topics)
       } else {
         console.log('fetch topics fail.');
       }
@@ -61,10 +61,25 @@ const Home = () => {
   return (
     <AppWrapper title="cnode">
       <div className="Home">
-        <div className="topicsList">
-          {topics.map((item, index) => (
-            <div className="topic" key={index}>
-              <div>{item.title}</div>
+        <div className={styles.topicsList}>
+          {topics.map((item) => (
+            <div className={styles.topic} key={item.id}>
+              <div className={styles.avatar}>
+                <img src={item.author.avatar_url} />
+              </div>
+              <div className="infoSet">
+                <div className={styles.title}>{item.title}</div>
+                <div className={styles.count}>
+                  <span className={styles.loginname}>
+                    {item.author.loginname}
+                  </span> 
+                  <span>
+                    {item.create_at.split('T')[0]}
+                  </span> 
+                  <span>评论: {item.reply_count}</span> 
+                  <span>浏览: {item.visit_count}</span>
+                </div>
+              </div>
             </div>
           ))}
         </div>
