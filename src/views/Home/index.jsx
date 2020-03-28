@@ -38,7 +38,7 @@ const Home = () => {
       }
     },
     []
-  )
+  );
 
   React.useEffect(() => {
     isFetching.current = false;
@@ -71,7 +71,7 @@ const Home = () => {
       }
     },
     [],
-  )
+  );
 
   React.useEffect(() => {
     window.addEventListener('scroll', isToBottom)

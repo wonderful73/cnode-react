@@ -1,0 +1,21 @@
+.topic{
+  padding: .5rem;
+}
+.title{
+  padding-bottom: .5rem;
+  font-size: .9rem;
+  line-height: 1.5;
+  border-bottom: 1px solid #ccc;
+}
+.container{
+  width: 100%;
+  word-wrap: break-word;
+  line-height: 1.5;
+  font-size: .7rem;
+}
+.container img {
+  width: 100%;
+}
+.container a{
+  color: #0366d6;
+}
