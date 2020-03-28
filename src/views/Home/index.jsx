@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import AppWrapper from '../../layout/AppWrapper'
 import { get } from '../../fetch';
 import styles from './index.module.css';
@@ -18,7 +19,7 @@ const Home = () => {
         params: {
           tab: 'all',
           page: page.current,
-          limit: 20,
+          limit: 10,
           mdrender: true,
         }
       };
@@ -28,14 +29,13 @@ const Home = () => {
       if (isCancel.current) return;
 
       if (success) {
-        setTopics(prevState => (isFetched.current ? [...prevState, data] : data));
+        setTopics(prevState => (isFetched.current ? [...prevState, ...data] : data));
         page.current += 1;
         isFetched.current = true;
+        isFetching.current = false;
       } else {
         console.log('fetch topics fail.');
       }
-
-      isFetching.current = false;
     },
     []
   )
@@ -51,14 +51,36 @@ const Home = () => {
     isCancel.current = false;
 
     fetchTopics();
-
+    
     return () => {
       isFetching.current = false;
       isCancel.current = true;
     }
   }, [fetchTopics]);
 
+  const isToBottom = React.useCallback(
+    () => {
+      const screenHeight = document.documentElement.clientHeight;
+      const scrollTop = document.documentElement.scrollTop;
+      const pageHeight = document.body.clientHeight;
+  
+      if (screenHeight + scrollTop - pageHeight + 100 >= 0) {
+        if (!isFetching.current) {
+          fetchTopics();
+        }
+      }
+    },
+    [],
+  )
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', isToBottom)
+    return () => {
+      window.removeEventListener('scroll', isToBottom)
+    }
+  });
   return (
+    
     <AppWrapper title="cnode">
       <div className="Home">
         <div className={styles.topicsList}>
@@ -67,19 +89,21 @@ const Home = () => {
               <div className={styles.avatar}>
                 <img src={item.author.avatar_url} />
               </div>
-              <div className="infoSet">
-                <div className={styles.title}>{item.title}</div>
-                <div className={styles.count}>
-                  <span className={styles.loginname}>
-                    {item.author.loginname}
-                  </span> 
-                  <span>
-                    {item.create_at.split('T')[0]}
-                  </span> 
-                  <span>评论: {item.reply_count}</span> 
-                  <span>浏览: {item.visit_count}</span>
+              <Link to={`/topic/${item.id}`}>
+                <div className="infoSet">
+                  <div className={styles.title}>{item.title}</div>
+                  <div className={styles.count}>
+                    <span className={styles.loginname}>
+                      {item.author.loginname}
+                    </span> 
+                    <span>
+                      {item.create_at.split('T')[0]}
+                    </span> 
+                    <span>评论: {item.reply_count}</span> 
+                    <span>浏览: {item.visit_count}</span>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>

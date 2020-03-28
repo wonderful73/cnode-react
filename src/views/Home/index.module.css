@@ -16,7 +16,7 @@
   margin-right: .5rem;
   overflow: hidden;
   border-radius: 2.5rem;
-  border: 2px solid #999;
+  border: 2px solid #eee;
   flex-shrink: 0;
 }
 .avatar > img {
