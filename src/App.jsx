@@ -16,6 +16,7 @@ import { Provider, useSelector } from 'react-redux';
 import Home from './views/Home';
 import Topic from './views/Topic';
 import NotFound from './views/NotFound';
+import Loading from './components/Loading'
 
 const App = () => {
   useAdaper(750);
@@ -23,7 +24,7 @@ const App = () => {
     <Provider store={store}>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <AppFrame>
-          <React.Suspense>
+          <React.Suspense fallback={<Loading></Loading>}>
             <Switch>
               <Route exact path="/" component={Home}></Route>
               <Route exact path="/topic/:id" component={Topic}></Route>

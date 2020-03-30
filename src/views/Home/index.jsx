@@ -4,6 +4,7 @@ import AppWrapper from '../../layout/AppWrapper'
 import { get } from '../../fetch';
 import styles from './index.module.css';
 
+
 const Home = () => {
   const isFetching = React.useRef(false);
   const isFetched = React.useRef(false);

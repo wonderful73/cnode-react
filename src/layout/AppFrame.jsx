@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavBar, Icon, Toast, Drawer, List } from 'antd-mobile';
 import PropTypes from 'prop-types';
-import './index.module.css';
+import './index.css';
 import routers from '../routers';
 
 const tabs = routers.tab;
@@ -81,9 +81,10 @@ const AppFrame = (props) => {
   };
   const drawStyle = {
     position: 'fixed',
-    minHeight: document.documentElement.clientHeight,
-    zIndex: 2,
-    top: '45px',
+    height: open ? document.documentElement.clientHeight : 0,
+    overflow: 'hidden',
+    // zIndex: 2,
+    // top: '45px',
   };
   return (
     <AppFrameContext.Provider value={dispatch}>
