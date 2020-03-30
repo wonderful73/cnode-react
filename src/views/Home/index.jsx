@@ -82,7 +82,7 @@ const Home = () => {
   return (
     
     <AppWrapper title="cnode">
-      <div className="Home">
+      <div className={styles.Home}>
         <div className={styles.topicsList}>
           {topics.map((item) => (
             <div className={styles.topic} key={item.id}>
