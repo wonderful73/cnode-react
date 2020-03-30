@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavBar, Icon, Toast, Drawer, List } from 'antd-mobile';
+import { NavBar, Icon, Toast, Drawer, List, Popover, } from 'antd-mobile';
 import PropTypes from 'prop-types';
 import './index.css';
 import routers from '../routers';
@@ -24,8 +24,46 @@ const initialOptions = {
 
 const AppFrameContext = React.createContext(null);
 
+const Item = Popover.Item;
+const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
+const RightContent = () => {
+  const [popoverShow, setPopoverShow] = React.useState(false);
+  return (
+    <Popover 
+
+      overlayClassName="fortest"
+      overlayStyle={{ color: 'currentColor' }}
+      visible={popoverShow}
+      overlay={[
+        (<Item key="5" value="special" icon={myImg('PKAgAqZWJVNwKsAJSmXd')} style={{ whiteSpace: 'nowrap' }}>设置</Item>),
+        (<Item key="6" value="button ct" icon={myImg('uQIYTFeRrjPELImDRrPt')}>
+          <span style={{ marginRight: 5 }}>登录</span>
+        </Item>),
+      ]}
+      align={{
+        overflow: { adjustY: 0, adjustX: 0 },
+        offset: [-10, 0],
+      }}
+      onVisibleChange={() => {setPopoverShow(!popoverShow)}}
+      onSelect={() => {setPopoverShow(!popoverShow)}}
+    >
+      <div style={{
+        height: '100%',
+        padding: '0 15px',
+        marginRight: '-15px',
+        display: 'flex',
+        alignItems: 'center',
+      }}
+      >
+        <Icon type="ellipsis" />
+      </div>
+    </Popover>
+  )
+}
+
 const AppFrame = (props) => {
-  const [open, setOpen] = React.useState(false)
+  const [drawOpen, setDrawOpen] = React.useState(false);
+  
   const [options, dispatch] = React.useReducer((state, {type, payload}) => {
     switch (type) {
       case 'CHANGE':
@@ -81,11 +119,15 @@ const AppFrame = (props) => {
   };
   const drawStyle = {
     position: 'fixed',
-    height: open ? document.documentElement.clientHeight : 0,
+    height: drawOpen ? document.documentElement.clientHeight : 0,
     overflow: 'hidden',
     // zIndex: 2,
     // top: '45px',
   };
+
+  
+
+  
   return (
     <AppFrameContext.Provider value={dispatch}>
       {withHeader && (
@@ -93,12 +135,12 @@ const AppFrame = (props) => {
           <div style={navBarWrap}>
             <NavBar
               mode="dark"
-              onLeftClick={() => { setOpen(!open) }}
+              onLeftClick={() => { setDrawOpen(!drawOpen) }}
               leftContent={
                 <span>Tabs</span>
               }
               rightContent={
-                <Icon key="1" type="ellipsis" />
+                <RightContent></RightContent>
               }
             >
             cnode
@@ -111,8 +153,8 @@ const AppFrame = (props) => {
             enableDragHandle
             contentStyle={{ color: '#A6A6A6', textAlign: 'center', paddingTop: 42 }}
             sidebar={sidebar}
-            open={open}
-            onOpenChange={() => { setOpen(!open) }}
+            open={drawOpen}
+            onOpenChange={() => { setDrawOpen(!drawOpen) }}
           >
           </Drawer>
         </React.Fragment>
